@@ -5,15 +5,20 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
+import org.junit.Assert;
 import io.qameta.allure.Allure;
 import static org.testng.Assert.assertEquals;
 import static utilities.BaseDriver.getDriver;
 import java.io.ByteArrayInputStream;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -22,6 +27,7 @@ import java.util.Set;
 public class BasePage {
 	
 	public String BASE_URL="https://www.saucedemo.com/";
+	public String HOME_PAGE_TITTLE_TEXT="Swag Labs";
 	
 	
 	public WebElement findElement(By locator)
@@ -304,6 +310,16 @@ public class BasePage {
 		Allure.addAttachment(screenshotname, new ByteArrayInputStream(((TakesScreenshot)getDriver()).getScreenshotAs(OutputType.BYTES)));
 		
 	}
+	
+	public WebElement waitForElementVisible( By locator, int timeoutInSeconds) {
+	    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
+	    return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+	
+	public void verifyPageTitle(String expectedTitle) {
+	    Assert.assertEquals(getDriver().getTitle(), expectedTitle, "Page title does not match!");
+	}
+
 	
 	
 	
