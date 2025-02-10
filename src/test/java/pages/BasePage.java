@@ -30,7 +30,7 @@ public class BasePage {
 	public String HOME_PAGE_TITTLE_TEXT="Swag Labs";
 	
 	
-	public WebElement findElement(By locator)
+	public WebElement findElement(By locator )
 	{
 		return getDriver().findElement(locator);	
 	}
@@ -61,7 +61,7 @@ public class BasePage {
 		action.moveToElement(findElement(locator)).perform();
 	}
 	
-	public void assertionHard(By locator, String expected) 
+	public void assertionHard(By locator, String expected ) 
 	{
 		assertEquals(getText(locator), expected);
 	}
@@ -71,7 +71,7 @@ public class BasePage {
 		assertEquals(getUrl(), expected);
 	}
 	
-	public void assertionSoft(By locator, String expected) 
+	public void assertionSoft(By locator, String expected ) 
 	{
 		SoftAssert softAssert = new SoftAssert();
 		softAssert.assertEquals(getText(locator), expected);
@@ -316,9 +316,11 @@ public class BasePage {
 	    return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 	
-	public void verifyPageTitle(String expectedTitle) {
-	    Assert.assertEquals(getDriver().getTitle(), expectedTitle, "Page title does not match!");
+	public void verifyPageTitle( String expectedTitle) {
+	    String actualTitle = getDriver().getTitle();
+	    Assert.assertEquals(actualTitle, expectedTitle);
 	}
+	
 
 	
 	

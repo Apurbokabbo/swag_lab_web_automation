@@ -12,11 +12,20 @@ public class LoginPage_TeseCases extends BaseDriver{
 	
 	
 	@Test
-	public void loginScreenTittleVerify() throws InterruptedException{
+	public void loginWithValidCredentials() throws InterruptedException{
 		
-		getDriver().get(loginObj.BASE_URL);
-		Thread.sleep(2000);
-		loginObj.loginner("standard_user", loginObj.PASSWORD);
+		loginObj.loginWithValidCredentials("standard_user", loginObj.PASSWORD);
+		
+	}
+	
+	
+	@Test
+	public void placeHolderVerify() throws InterruptedException {
+		
+		loginObj.assertionSoft(loginObj.LOGIN_PAGE_USER_NAME_INPUT_FIELD, loginObj.LOGIN_PAGE_USER_NAME_INPUT_FIELD_PLACEHOLDER_TEXT);
+		loginObj.assertionSoft(loginObj.LOGIN_PAGE_PASSWORD_INPUT_FIELD, loginObj.LOGIN_PAGE_PASSWORD_INPUT_FIELD_PLACEHOLDER_TEXT);
+	
+		
 		
 	}
 

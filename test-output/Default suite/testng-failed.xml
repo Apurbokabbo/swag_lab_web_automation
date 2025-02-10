@@ -6,8 +6,8 @@
       <class name="testcases.LoginPage_TeseCases">
         <methods>
           <include name="setBrowser"/>
-          <include name="loginScreenTittleVerify"/>
           <include name="closeBrowser"/>
+          <include name="placeHolderVerify"/>
         </methods>
       </class> <!-- testcases.LoginPage_TeseCases -->
     </classes>

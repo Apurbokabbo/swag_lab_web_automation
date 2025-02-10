@@ -53,12 +53,13 @@ public class BaseDriver {
 	}
 	
 	@BeforeMethod
-	public static synchronized void setBrowser()
-	{
+	public static synchronized void setBrowser() throws InterruptedException{
 		WebDriver driver = getBrowser(browserName);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		setDriver(driver);
+		getDriver().get("https://www.saucedemo.com/");
+		Thread.sleep(1500);
 		
 	}
 	
